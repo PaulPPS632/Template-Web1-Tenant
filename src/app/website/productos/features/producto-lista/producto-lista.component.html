@@ -1,0 +1,28 @@
+<!-- CAROUSEL -->
+<div class="rounded">
+  @if (imagenespublicitarias["flyer principal"]) {
+    <app-carrusel-img
+      [imagenes]="
+        imagenespublicitarias['flyer principal'].length
+          ? imagenespublicitarias['flyer principal']
+          : []
+      "
+    ></app-carrusel-img>
+  }
+</div>
+<!-- <p class="text-2xl text-center font-extrabold text-gray-800 dark:text-white mt-3">NUEVOS</p> -->
+
+<app-carrusel-cartproduct
+  [items]="nuevos"
+  [title]="'Nuevos Ingresos'"
+></app-carrusel-cartproduct>
+
+@for (categorias of Categoria_Producto; track $index) {
+  <!-- <p class="text-2xl text-center font-extrabold text-gray-800 dark:text-white mt-3">{{categorias}}</p> -->
+  @if (categorias.productos.length > 0) {
+    <app-carrusel-cartproduct
+      [items]="categorias.productos"
+      [title]="categorias.categoria.nombre"
+    ></app-carrusel-cartproduct>
+  }
+}
